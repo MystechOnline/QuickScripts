@@ -31,8 +31,9 @@
     It needs no internet connection, no download and no sign-in. It reads the hardware hash, serial number,
     manufacturer and model from Windows and writes two files next to this script (or in -OutputFolder), in the
     formats Intune's imports expect (plain ANSI text, no quotation marks):
-      Autopilot-<serial number>.csv    the Autopilot registration: Intune > Devices > Windows > Enrollment >
-                                       Devices > Import. The normal route.
+      Autopilot-<serial number>.csv    the Autopilot registration: Intune > Devices > Windows > (Device
+                                       onboarding) Enrollment > (Windows Autopilot, at the bottom) Devices >
+                                       Import. The normal route.
       CorporateId-<serial number>.csv  the corporate device identifier (manufacturer, model, serial number, no
                                        header): Intune > Devices > Enrollment > Corporate device identifiers >
                                        Add > Upload CSV file. Only for a PC that can't be registered in Autopilot.
@@ -79,4 +80,4 @@ Write-Host "  Serial number: $serial"
 Write-Host "  Model:         $($model.Manufacturer) $($model.Model)"
 if (-not "$($board.SerialNumber)".Trim()) { Write-Host '  Warning: the motherboard reports no serial number; if the import says InvalidZtdHardwareHash, the manufacturer has to fix the firmware.' -ForegroundColor Yellow }
 Write-Host ''
-Write-Host 'Next: Intune > Devices > Windows > Enrollment > Devices > Import, choose this file, then Sync.'
+Write-Host 'Next: Intune > Devices > Windows > (Device onboarding) Enrollment > scroll to the bottom > (Windows Autopilot) Devices > Import'
